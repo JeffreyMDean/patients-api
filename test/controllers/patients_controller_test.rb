@@ -34,4 +34,11 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 40, data["age"]
     assert_equal "Updated insurance", data["insurance"]
   end
+
+  test "destroy" do
+    assert_difference "Patient.count", -1 do
+      delete "/patients/#{Patient.first.id}.json"
+      assert_response 200
+    end
+  end
 end
